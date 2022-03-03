@@ -24,8 +24,6 @@ class NluLinkCollector(CrawlSpider):
         for row in data:
             urls.append(row[0])
 
-        self.logger.warn(urls[0])
-
         for url in urls:
             yield Request(url, self.parse_items)
 
