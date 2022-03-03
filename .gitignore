@@ -6,3 +6,4 @@ __pycache__/
 scrapinghub.yml
 build*
 *.egg*
+nlu_link_collector_links.csv

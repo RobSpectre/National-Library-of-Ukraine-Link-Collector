@@ -9,7 +9,8 @@ import scrapy
 class NluLinkCollectorItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
+    source_uri = scrapy.Field()
     year = scrapy.Field()
     volume = scrapy.Field()
+    title = scrapy.Field()
     uri = scrapy.Field()
-    source_uri = scrapy.Field()

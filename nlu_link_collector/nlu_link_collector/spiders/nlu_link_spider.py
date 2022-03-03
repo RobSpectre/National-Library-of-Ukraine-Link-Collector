@@ -36,12 +36,16 @@ class NluLinkCollector(CrawlSpider):
             year = row.xpath(".//b[1]/text()").extract()
 
             for link in row.xpath('.//a'):
-                item = NluLinkCollectorItem()
+                href = link.xpath("./@href").extract()
 
-                item['year'] = year
-                item['volume'] = link.xpath("./text()").extract()
-                item['uri'] = link.xpath("./@href").extract()
-                item['source_uri'] = response.url
+                if len(href) > 0 and "cgi-bin" in href[0]:
+                    item = NluLinkCollectorItem()
 
-                if item['uri']:
-                    yield item
+                    item['source_uri'] = response.url
+                    item['year'] = year
+                    item['volume'] = link.xpath("./text()").extract()
+                    item['title'] = hxs.xpath("//title/text()").extract()
+                    item['uri'] = "http://www.irbis-nbuv.gov.ua{0}".format(href[0])
+
+                    if item['uri']:
+                        yield item
