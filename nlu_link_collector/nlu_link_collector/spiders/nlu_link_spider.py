@@ -1,4 +1,5 @@
 import csv
+import pkgutil
 
 from scrapy.spiders import CrawlSpider, Rule, Request
 from scrapy.linkextractors import LinkExtractor
@@ -13,11 +14,12 @@ class NluLinkCollector(CrawlSpider):
     def start_requests(self):
         urls = []
 
-        with open('nlu_links.csv') as csv_file:
-            data = csv.reader(csv_file)
-            next(data, None)
-            for row in data:
-                urls.append(row[0])
+        csv_file = pkgutil.get_data("nlu_link_collector",
+                                    "resources/nlu_links.csv")
+        data = csv.reader(csv_file)
+        next(data, None)
+        for row in data:
+            urls.append(row[0])
 
         self.logger.warn(urls[0])
 
