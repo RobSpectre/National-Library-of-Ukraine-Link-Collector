@@ -1,0 +1,7 @@
+*.pyc
+*.swp
+*.swo
+*.csv
+scrapinghub.yml
+build*
+*.egg*
