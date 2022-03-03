@@ -19,7 +19,7 @@ class NluLinkCollector(CrawlSpider):
 
         csv_file = pkgutil.get_data("nlu_link_collector",
                                     "resources/nlu_links.csv")
-        data = csv.reader(csv_file)
+        data = csv.reader(csv_file.decode('utf-8').splitlines(), delimiter=',')
         next(data, None)
         for row in data:
             urls.append(row[0])
